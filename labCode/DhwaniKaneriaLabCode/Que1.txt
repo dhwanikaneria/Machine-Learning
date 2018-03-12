@@ -1,0 +1,128 @@
+
+
+Variation 1:
+In [1]:
+from sklearn.neural_network import MLPClassifier
+X=[[0.,0.],[0.,1.],[1.,0.],[1.,1.]]
+y=[0,1,1,0]
+
+
+clf = MLPClassifier(solver='lbfgs', 
+                    activation='relu', 
+                    alpha=0.0, 
+                    hidden_layer_sizes=(2),
+                    learning_rate_init=0.001,
+                    max_iter=200,
+                    random_state=20)
+print(clf.fit(X, y) )
+print('Prediction on training data')
+print(clf.predict([[0, 0], [0, 1], [1, 0], [1, 1]]))
+
+print('Prediction Probability on training data')
+print(clf.predict_proba([[0, 0], [0, 1], [1, 0], [1, 1]]))
+print('Loss:')
+print(clf.loss_)
+print('CoEfficients')
+print(clf.coefs_)
+
+Out[1]:
+MLPClassifier(activation='relu', alpha=0.0, batch_size='auto', beta_1=0.9,
+       beta_2=0.999, early_stopping=False, epsilon=1e-08,
+       hidden_layer_sizes=2, learning_rate='constant',
+       learning_rate_init=0.001, max_iter=200, momentum=0.9,
+       nesterovs_momentum=True, power_t=0.5, random_state=20, shuffle=True,
+       solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,
+       warm_start=False)
+Prediction on training data
+[0 1 1 0]
+Prediction Probability on training data
+[[  9.99730419e-01   2.69580549e-04]
+ [  0.00000000e+00   1.00000000e+00]
+ [  1.81340766e-08   9.99999982e-01]
+ [  1.00000000e+00   0.00000000e+00]]
+Loss:
+6.74088067248e-05
+CoEfficients
+[array([[ 26.72612533,   1.01907003],
+       [ 21.27305928,   3.0428037 ]]), array([[-42.82208547],
+       [ 37.05741041]])]
+
+
+
+Variation 2:
+
+In [2]:
+
+
+clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+                    hidden_layer_sizes=(5, 4), random_state=1)
+
+
+Out[2]:
+MLPClassifier(activation='relu', alpha=1e-05, batch_size='auto', beta_1=0.9,
+       beta_2=0.999, early_stopping=False, epsilon=1e-08,
+       hidden_layer_sizes=(5, 4), learning_rate='constant',
+       learning_rate_init=0.001, max_iter=200, momentum=0.9,
+       nesterovs_momentum=True, power_t=0.5, random_state=1, shuffle=True,
+       solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,
+       warm_start=False)
+Prediction on training data
+[0 1 1 0]
+Prediction Probability on training data
+[[  9.99890032e-01   1.09967581e-04]
+ [  9.05067290e-06   9.99990949e-01]
+ [  0.00000000e+00   1.00000000e+00]
+ [  9.99890032e-01   1.09967581e-04]]
+Loss:
+0.00043860382451
+CoEfficients
+[array([[-0.15158379,  5.09036222, -0.91318856, -1.96373093, -0.64530457],
+       [-0.74471381, -4.12890984, -0.28212889,  1.51683217,  0.07091022]]), array([[ 0.27463709, -0.13322872,  0.09455411, -0.57936604],
+       [-0.48638318, -0.25496462,  2.34507704, -0.3005889 ],
+       [ 0.30984746,  0.60639369,  0.63574359, -0.6685277 ],
+       [-0.74262043, -1.73681033,  0.88933919, -0.64709609],
+       [-0.12710207,  0.73769747,  0.05343199,  0.30912972]]), array([[  0.54068518],
+       [  0.49784036],
+       [ 15.49866037],
+       [ -0.47456877]])]
+	   
+
+
+Variation 3:
+
+In [3]:
+X = [[0, 0], [0, 1], [1, 0], [1, 1]]
+y = [0, 1, 1, 0]
+clf = MLPClassifier(solver='lbfgs', 
+                    activation='logistic', 
+                    alpha=0.0, 
+                    hidden_layer_sizes=(2),
+                    learning_rate_init=0.001,
+                    max_iter=200,
+                    random_state=20)
+print(clf.fit(X, y) )
+print(clf.predict([[0, 0], [0, 1], [1, 0], [1, 1]]))
+print('loss ',clf.loss_)
+
+
+Out[3]:
+MLPClassifier(activation='logistic', alpha=0.0, batch_size='auto', beta_1=0.9,
+       beta_2=0.999, early_stopping=False, epsilon=1e-08,
+       hidden_layer_sizes=2, learning_rate='constant',
+       learning_rate_init=0.001, max_iter=200, momentum=0.9,
+       nesterovs_momentum=True, power_t=0.5, random_state=20, shuffle=True,
+       solver='lbfgs', tol=0.0001, validation_fraction=0.1, verbose=False,
+       warm_start=False)
+Prediction on training data
+[0 1 1 0]
+Prediction Probability on training data
+[[  9.99999997e-01   2.81926278e-09]
+ [  1.81504825e-05   9.99981850e-01]
+ [  2.28968573e-05   9.99977103e-01]
+ [  9.99714246e-01   2.85754184e-04]]
+Loss:
+8.17114014395e-05
+CoEfficients
+[array([[ 11.12697296,   4.58781512],
+       [ 11.04119089,   4.70794598]]), array([[-21.38034287],
+       [ 47.21367955]])]
